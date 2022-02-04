@@ -3,6 +3,7 @@
 .DS_Store
 
 # Xcode
+
 #
 build/
 *.pbxuser
@@ -53,4 +54,8 @@ buck-out/
 .expo/
 web-build/
 dist/
+
+
+
+
 .env
