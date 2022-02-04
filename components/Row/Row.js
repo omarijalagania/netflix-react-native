@@ -29,7 +29,7 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
         {movies.map((movie) => {
           let url = !isLargeRow ? movie.backdrop_path : movie.poster_path;
           return (
-            <TouchableOpacity style={styles.row__scroll}>
+            <TouchableOpacity key={movie.id} style={styles.row__scroll}>
               <Image
                 source={{ uri: imageUrl + url }}
                 style={styles.row__image}

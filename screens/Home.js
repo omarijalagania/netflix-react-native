@@ -6,13 +6,12 @@ import {
   StatusBar,
   ScrollView,
 } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import Header from "../components/Header/Header";
 import Row from "../components/Row/Row";
 import requests from "../helper/urls";
+
 const Home = () => {
-  const Tab = createBottomTabNavigator();
   return (
     <SafeAreaView style={styles.home}>
       <StatusBar style="auto" />
@@ -33,10 +32,6 @@ const Home = () => {
           fetchUrl={requests.fetchDocumentaries}
         />
       </ScrollView>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={Row} />
-        <Tab.Screen name="Settings" component={Header} />
-      </Tab.Navigator>
     </SafeAreaView>
   );
 };
