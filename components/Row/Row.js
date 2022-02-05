@@ -6,12 +6,13 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
+
 import React, { useState, useEffect } from "react";
 import axios from "../../axios/axios";
-
+import { useNavigation } from "@react-navigation/native";
 const Row = ({ title, fetchUrl, isLargeRow }) => {
   const [movies, setMovies] = useState([]);
-
+  const navigation = useNavigation();
   //base url for images
   const imageUrl = "https://image.tmdb.org/t/p/w500";
   useEffect(() => {
@@ -29,7 +30,13 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
         {movies.map((movie) => {
           let url = !isLargeRow ? movie.backdrop_path : movie.poster_path;
           return (
-            <TouchableOpacity key={movie.id} style={styles.row__scroll}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("movieDetails", { movie: movie })
+              }
+              key={movie.id}
+              style={styles.row__scroll}
+            >
               <Image
                 source={{ uri: imageUrl + url }}
                 style={styles.row__image}

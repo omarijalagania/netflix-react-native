@@ -1,60 +1,31 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import Home from "./screens/Home";
-import SomeData from "./screens/SomeData";
-import Search from "./screens/Search";
-import Favorites from "./screens/Favorites";
+import BottomNavigation from "./navigation/BottomNavigation";
 import { NavigationContainer } from "@react-navigation/native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import MovieDetails from "./screens/MovieDetails";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+const Stack = createNativeStackNavigator();
 
-const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <View style={styles.container}>
       <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
-
-              if (route.name === "Home") {
-                iconName = focused ? "home" : "home";
-              } else if (route.name === "Settings") {
-                iconName = focused ? "list" : "list";
-              } else if (route.name === "Favorites") {
-                iconName = focused ? "star" : "star";
-              } else if (route.name === "Search") {
-                iconName = focused ? "search" : "search";
-              }
-
-              // You can return any component that you like here!
-              return <Ionicons name={iconName} size={size} color={color} />;
-            },
-            tabBarActiveTintColor: "red",
-            tabBarInactiveTintColor: "gray",
-            tabBarActiveBackgroundColor: "black",
-            tabBarInactiveBackgroundColor: "black",
-            tabBarStyle: {
-              borderTopWidth: 1,
-              borderTopColor: "black",
-            },
-          })}
-        >
-          <Tab.Screen
+        <Stack.Navigator>
+          <Stack.Screen
             options={{
-              headerStyle: {
-                backgroundColor: "#000",
-              },
-              headerTintColor: "#fff",
+              headerShown: false,
             }}
-            name="Home"
-            component={Home}
+            name="Nav"
+            component={BottomNavigation}
           />
-          <Tab.Screen name="Favorites" component={Favorites} />
-          <Tab.Screen name="Search" component={Search} />
-          <Tab.Screen name="Settings" component={SomeData} />
-        </Tab.Navigator>
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="movieDetails"
+            component={MovieDetails}
+          />
+        </Stack.Navigator>
       </NavigationContainer>
     </View>
   );
@@ -63,5 +34,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#000",
   },
 });
